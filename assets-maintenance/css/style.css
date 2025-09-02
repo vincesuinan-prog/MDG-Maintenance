@@ -1,0 +1,205 @@
+* {
+    box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 600px;
+    position: relative;
+    margin: auto;
+}
+
+.slideshow-container img {
+    height: 80vh;
+    object-fit: contain;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+
+/* Content over the animated background */
+.led-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+h1 {
+    font-size: clamp(20px, 3vw, 28px);
+    margin: 0;
+    letter-spacing: 0.6px
+}
+
+p {
+    margin: 0;
+    opacity: 0.9
+}
+
+
+/* Small rendering tweaks for glow shapes using :before gradient */
+.led-card:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(600px 200px at 10% 20%, rgba(255, 120, 100, 0.06), transparent 8%),
+        radial-gradient(500px 180px at 85% 80%, rgba(90, 150, 255, 0.045), transparent 10%);
+    mix-blend-mode: screen;
+}
+
+
+/* small responsive behavior */
+@media (max-width:520px) {
+    .led-card {
+        height: 260px;
+        padding: 18px
+    }
+}
+
+.brochure-section {
+    position: relative;
+    overflow: hidden;
+    /* keeps background inside section */
+    background: #0b0b0b;
+    /* fallback background */
+}
+
+.brochure-section .led-bg-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    /* so clicks still work on content */
+}
+
+.brochure-section .container,
+.brochure-section .row,
+.brochure-section .cta-content {
+    position: relative;
+    z-index: 2;
+    /* content above background */
+}
+
+
+.brochure-abstract-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background: linear-gradient(120deg, #18679a 0%, #fdc015 100%);
+    opacity: 0.18;
+    animation: led-gradient-move 8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes led-gradient-move {
+    0% {
+        background-position: 0% 50%;
+        filter: blur(0px) brightness(1.1);
+    }
+
+    100% {
+        background-position: 100% 50%;
+        filter: blur(6px) brightness(1.2);
+    }
+}
+
+/* Ensure content is above the background */
+.call-action .container,
+.call-action .row,
+.call-action .cta-content {
+    position: relative;
+    z-index: 1;
+}
